@@ -83,10 +83,10 @@ public class Main {
         System.out.println("What is your honorofics(Mr/Mrs/Ms):");
         String hono1 = honorific.nextLine();
 
-        if(hono1.equals("Mrs")){
-            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mrs."+passenger);
-        } else if (hono1.equals("Mr") ) {
+        if(hono1.equals("Mr")){
             System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr."+passenger);
+        } else if (hono1.equals("Mrs") ) {
+            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mrs."+passenger);
         } else if (hono1.equals("Ms")) {
             System.out.println("WELCOME! TO THE \"X\" AIR LINE Ms."+passenger);
         }else {
