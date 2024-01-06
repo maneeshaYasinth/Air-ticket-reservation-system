@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.lang.String;
+
 //       Classes:
 //AirTicketReservationSystem:
 //
@@ -72,7 +75,23 @@ public class Main {
 
         System.out.println("WELCOME! TO THE \"X\" AIR LINE");
 
+        Scanner name = new Scanner(System.in);
+        System.out.print("Enter your name:");
+        String passenger = name.nextLine();
 
+        Scanner honorific = new Scanner(System.in);
+        System.out.println("What is your honorofics(Mr/Mrs/Ms):");
+        String hono1 = honorific.nextLine();
+
+        if(hono1.equals("Mrs")){
+            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mrs."+passenger);
+        } else if (hono1.equals("Mr") ) {
+            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr."+passenger);
+        } else if (hono1.equals("Ms")) {
+            System.out.println("WELCOME! TO THE \"X\" AIR LINE Ms."+passenger);
+        }else {
+            System.out.println("INVALID INPUT!!");
+        }
 
     }
 }
