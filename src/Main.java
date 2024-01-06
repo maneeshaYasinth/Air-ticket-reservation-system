@@ -92,6 +92,7 @@ public class Main {
         }else {
             System.out.println("INVALID INPUT!!");
         }
+        System.out.println("have a look at our prices");
 
     }
 }
