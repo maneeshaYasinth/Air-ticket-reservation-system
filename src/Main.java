@@ -72,16 +72,22 @@ import java.lang.String;
 class Flight {
     private String flightNumber;
     private String destination;
+    private String departure;
 
-    public Flight(String flightNumber, String destination) {
+    public Flight(String flightNumber, String destination, String departure) {
         this.flightNumber = flightNumber;
         this.destination = destination;
+        this.departure = departure;
 
         System.out.println("Your flight number is: " + this.flightNumber);
     }
 
      void myDestination (){
         System.out.println("Your flight destinatiion is : "+this.destination);
+    }
+
+    void myDeparture(){
+        System.out.println("My departure is : "+this.departure);
     }
 }
 
@@ -109,8 +115,9 @@ public class Main {
 
         System.out.println("Have a look at our prices");
 
-        Flight flight = new Flight("ABC123", "CMB: Sri Lanka");
+        Flight flight = new Flight("ABC123", "CMB: Sri Lanka", "changi: Singapore");
         flight.myDestination();
+        flight.myDeparture();
     }
 }
 
