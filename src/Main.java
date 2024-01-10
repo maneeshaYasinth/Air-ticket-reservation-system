@@ -79,6 +79,10 @@ class Flight {
 
         System.out.println("Your flight number is: " + this.flightNumber);
     }
+
+     void myDestination (){
+        System.out.println("Your flight destinatiion is : "+this.destination);
+    }
 }
 
 public class Main {
@@ -105,7 +109,8 @@ public class Main {
 
         System.out.println("Have a look at our prices");
 
-        Flight flight = new Flight("ABC123", "Destination A");
+        Flight flight = new Flight("ABC123", "CMB: Sri Lanka");
+        flight.myDestination();
     }
 }
 
