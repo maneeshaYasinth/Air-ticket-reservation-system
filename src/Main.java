@@ -91,6 +91,16 @@ class Flight {
     }
 }
 
+class Passenger{
+    private  String name;
+    private  String passportNumber;
+
+    public Passenger(String passengerName, String passengerPassportNumber) {
+        this.name = passengerName;
+        this.passportNumber = passengerPassportNumber;
+            }
+        }
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("WELCOME! TO THE \"X\" AIR LINE");
