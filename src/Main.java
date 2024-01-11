@@ -82,7 +82,7 @@ class Flight {
         System.out.println("Your flight number is: " + this.flightNumber);
     }
 
-     void myDestination (){
+    void myDestination (){
         System.out.println("Your flight destinatiion is : "+this.destination);
     }
 
@@ -94,15 +94,48 @@ class Flight {
 class Passenger{
     private  String name;
     private  String passportNumber;
+    private String honorof;
 
-    public Passenger(String passengerName, String passengerPassportNumber) {
+    public Passenger(String passengerName, String passengerPassportNumber,String honoro) {
         this.name = passengerName;
         this.passportNumber = passengerPassportNumber;
-            }
+        this.honorof=honoro;
+    }
+
+    void nameOut(){
+        if (this.honorof.equals("Mr")) {
+            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr." + this.name);
+        } else if (this.honorof.equals("Mrs")) {
+            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mrs." + this.name);
+        } else if (this.honorof.equals("Ms")) {
+            System.out.println("WELCOME! TO THE \"X\" AIR LINE Ms." + this.name);
+        } else {
+            System.out.println("INVALID INPUT!!");
         }
+    }
+}
 
 public class Main {
     public static void main(String[] args) {
+
+        System.out.println("\t\t\t   ***             ***");
+        System.out.println("\t\t\t     ***         ***");
+        System.out.println("\t\t\t       ***     ***");
+        System.out.println("\t\t\t          ** ** ");
+        System.out.println("\t\t\t       ***     ***");
+        System.out.println("\t\t\t     ***         ***");
+        System.out.println("\t\t\t   ***             ***");
+
+        System.out.println();
+        System.out.println();
+
+
+
+
+
+
+
+
         System.out.println("WELCOME! TO THE \"X\" AIR LINE");
 
         Scanner name = new Scanner(System.in);
@@ -113,21 +146,19 @@ public class Main {
         System.out.println("What is your honorifics (Mr/Mrs/Ms):");
         String hono1 = honorific.nextLine();
 
-        if (hono1.equals("Mr")) {
-            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr." + passenger);
-        } else if (hono1.equals("Mrs")) {
-            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mrs." + passenger);
-        } else if (hono1.equals("Ms")) {
-            System.out.println("WELCOME! TO THE \"X\" AIR LINE Ms." + passenger);
-        } else {
-            System.out.println("INVALID INPUT!!");
-        }
+        Scanner passportNumber = new Scanner(System.in);
+        System.out.print("Enter your passport Number:");
+        String passengerPassport = name.nextLine();
 
-        System.out.println("Have a look at our prices");
+
+
+        Passenger passenger1 = new Passenger(passenger, passengerPassport,hono1);
+        passenger1.nameOut();
 
         Flight flight = new Flight("ABC123", "CMB: Sri Lanka", "changi: Singapore");
         flight.myDestination();
         flight.myDeparture();
+
+
     }
 }
-
