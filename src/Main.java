@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.lang.String;
+import java.util.Random;
 
 /*
  AirTicketReservationSystem Class:
@@ -118,7 +119,20 @@ class Passenger{
 
 class Reservation {
     private String reservationNumber;
+    private String reserveName;
+    private String reserveNumber;
 
+    public Reservation(String passName, String passNumber){
+        this.reserveName=passName;
+        this.reservationNumber=passNumber;
+    }
+
+    public static String generateReservationNumber() {
+        // Generate a random reservation number
+        Random random = new Random();
+        int randomInt = random.nextInt(1000000); // Adjust the range as needed
+        return "R" + String.format("%06d", randomInt);
+    }
 }
 
 public class Main {
@@ -164,6 +178,9 @@ public class Main {
         Flight flight = new Flight("ABC123", "CMB: Sri Lanka", "changi: Singapore");
         flight.myDestination();
         flight.myDeparture();
+
+        Reservation reserv1 = new Reservation(passenger,passengerPassport);
+        System.out.println("Your reservation number is : "+reserv1.generateReservationNumber());
 
 
     }
