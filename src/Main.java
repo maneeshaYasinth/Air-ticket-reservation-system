@@ -83,6 +83,7 @@ class Flight {
     }
 
     void myDestination (){
+
         System.out.println("Your flight destinatiion is : "+this.destination);
     }
 
@@ -113,6 +114,11 @@ class Passenger{
             System.out.println("INVALID INPUT!!");
         }
     }
+}
+
+class Reservation {
+    private String reservationNumber;
+
 }
 
 public class Main {
