@@ -89,7 +89,7 @@ class Flight {
     }
 
     void myDeparture(){
-        System.out.println("My departure is : "+this.departure);
+        System.out.println("your departure is : "+this.departure);
     }
 }
 
