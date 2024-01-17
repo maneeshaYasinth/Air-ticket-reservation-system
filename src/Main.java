@@ -73,9 +73,9 @@ import java.util.Scanner;
 
 
 class Flight {
-    private String flightNumber;
-    private String destination;
-    private String departure;
+    final String flightNumber;
+    final String destination;
+    final String departure;
 
     public Flight(String flightNumber, String destination, String departure) {
         this.flightNumber = flightNumber;
@@ -95,9 +95,9 @@ class Flight {
 }
 
 class Passenger {
-    private String name;
-    private String passportNumber;
-    private String honorof;
+    final String name;
+    final String passportNumber;
+    final String honorof;
 
     public Passenger(String passengerName, String passengerPassportNumber, String honoro) {
         this.name = passengerName;
@@ -106,15 +106,23 @@ class Passenger {
     }
 
     void nameOut() {
-        if (this.honorof.equals("Mr")) {
-            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr." + this.name);
-        } else if (this.honorof.equals("Mrs")) {
-            System.out.println("WELCOME! TO THE \"X\" AIR LINE Mrs." + this.name);
-        } else if (this.honorof.equals("Ms")) {
-            System.out.println("WELCOME! TO THE \"X\" AIR LINE Ms." + this.name);
-        } else {
-            System.out.println("INVALID INPUT!!");
+
+
+        switch (honorof){
+            case "Mr":
+                System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr." + this.name);
+                break;
+            case "Mrs":
+                System.out.println("WELCOME! TO THE \"X\" AIR LINE Mrs." + this.name);
+                break;
+            case "Ms":
+                System.out.println("WELCOME! TO THE \"X\" AIR LINE Ms." + this.name);
+                break;
+            default:
+                System.out.println("INVALID INPUT!!");
+                break;
         }
+
     }
 }
 
@@ -128,13 +136,13 @@ class ReservationNumberGenerator {
 }
 
 class Reservation {
-    private String reservationNumber;
-    private String reserveName;
+    final String reservationNumber;
+    final String reserveName;
     private String reserveNumber;
 
     public Reservation(String passName, String passNumber) {
         this.reserveName = passName;
-        this.reservationNumber = ReservationNumberGenerator.generateReservationNumber();
+        this.reservationNumber =ReservationNumberGenerator.generateReservationNumber();
     }
     public String getReservationNumber() {
         return reservationNumber;
