@@ -86,7 +86,7 @@ class Flight {
     }
 
     void myDestination() {
-        System.out.println("Your flight destinatiion is : " + this.destination);
+        System.out.println("Your flight destination is : " + this.destination);
     }
 
     void myDeparture() {
@@ -105,7 +105,15 @@ class Passenger {
         this.honorof = honoro;
     }
 
-    void nameOut() {
+    static String  checkBook(){
+        Scanner passportNumberScanner = new Scanner(System.in);
+        System.out.print("Enter your passport Number: ");
+        String passengerPassport = passportNumberScanner.nextLine();
+
+       return  passengerPassport;
+    }
+
+    void nameOut(String reservationNumber) {
 
 
         switch (honorof){
@@ -130,7 +138,7 @@ class ReservationNumberGenerator {
     public static String generateReservationNumber() {
         // Generate a random reservation number
         Random random = new Random();
-        int randomInt = random.nextInt(1000000); // Adjust the range as needed
+        int randomInt = random.nextInt(1000000);
         return "R" + String.format("%06d", randomInt);
     }
 }
@@ -165,29 +173,52 @@ public class Main {
         System.out.println("WELCOME! TO THE \"X\" AIR LINE");
 
         try (Scanner nameScanner = new Scanner(System.in);
-             Scanner honorificScanner = new Scanner(System.in);
-             Scanner passportNumberScanner = new Scanner(System.in)) {
+             Scanner honorificScanner = new Scanner(System.in))
+              {
 
             System.out.print("Enter your name: ");
             String passenger = nameScanner.nextLine();
 
-            System.out.println("What is your honorifics (Mr/Mrs/Ms):");
+            System.out.print("What is your honorifics (Mr/Mrs/Ms):");
             String hono1 = honorificScanner.nextLine();
 
-            System.out.print("Enter your passport Number: ");
-            String passengerPassport = passportNumberScanner.nextLine();
+
+
+
+            Scanner choice = new Scanner(System.in);
+            System.out.print("Have you booked your flight(yes or No): ");
+            String answer = choice.nextLine();
+
+
+
 
             //calling passenger class
-            Passenger passenger1 = new Passenger(passenger, passengerPassport, hono1);
-            passenger1.nameOut();
+            Passenger passenger1 = new Passenger(passenger, Passenger.checkBook(), hono1);
 
             //calling flight class
             Flight flight = new Flight("ABC123", "CMB: Sri Lanka", "changi: Singapore");
+
+            //calling reservation class
+            Reservation reserv1 = new Reservation(passenger, Passenger.checkBook());
+
+            if (answer.equals("yes") || answer.equals("YES")){
+                passenger1.checkBook();
+            }else {
+
+                Scanner input = new Scanner(System.in);
+                System.out.println("Can you enter your reservation number: ");
+                String inputReserveNumb = input.nextLine();
+                passenger1.nameOut(inputReserveNumb);
+            }
+
+
+
+
             flight.myDestination();
             flight.myDeparture();
 
-            //calling reservation class
-            Reservation reserv1 = new Reservation(passenger, passengerPassport);
+
+
             System.out.println("Your reservation number is: " + reserv1.getReservationNumber());
         }
     }
