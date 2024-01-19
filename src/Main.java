@@ -72,6 +72,8 @@ import java.util.Scanner;
 
 
 
+
+
 class Flight {
     final String flightNumber;
     final String destination;
@@ -105,18 +107,18 @@ class Passenger {
         this.honorof = honoro;
     }
 
-    static String  checkBook(){
-        Scanner passportNumberScanner = new Scanner(System.in);
-        System.out.print("Enter your passport Number: ");
-        String passengerPassport = passportNumberScanner.nextLine();
-
-       return  passengerPassport;
+    static String checkBook(String userResponse) {
+        if (userResponse.equalsIgnoreCase("yes")) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Can you enter your reservation number: ");
+            return input.nextLine();
+        } else {
+            return ReservationNumberGenerator.generateReservationNumber();
+        }
     }
 
     void nameOut(String reservationNumber) {
-
-
-        switch (honorof){
+        switch (honorof) {
             case "Mr":
                 System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr." + this.name);
                 break;
@@ -130,7 +132,6 @@ class Passenger {
                 System.out.println("INVALID INPUT!!");
                 break;
         }
-
     }
 }
 
@@ -146,15 +147,17 @@ class ReservationNumberGenerator {
 class Reservation {
     final String reservationNumber;
     final String reserveName;
-    private String reserveNumber;
 
     public Reservation(String passName, String passNumber) {
         this.reserveName = passName;
-        this.reservationNumber =ReservationNumberGenerator.generateReservationNumber();
+        this.reservationNumber = passNumber;
     }
+
     public String getReservationNumber() {
         return reservationNumber;
     }
+
+
 }
 
 public class Main {
@@ -173,8 +176,8 @@ public class Main {
         System.out.println("WELCOME! TO THE \"X\" AIR LINE");
 
         try (Scanner nameScanner = new Scanner(System.in);
-             Scanner honorificScanner = new Scanner(System.in))
-              {
+             Scanner honorificScanner = new Scanner(System.in);
+             Scanner choice = new Scanner(System.in)) {
 
             System.out.print("Enter your name: ");
             String passenger = nameScanner.nextLine();
@@ -182,42 +185,21 @@ public class Main {
             System.out.print("What is your honorifics (Mr/Mrs/Ms):");
             String hono1 = honorificScanner.nextLine();
 
-
-
-
-            Scanner choice = new Scanner(System.in);
             System.out.print("Have you booked your flight(yes or No): ");
             String answer = choice.nextLine();
 
+            // calling passenger class
+            String reservationNumber = Passenger.checkBook(answer);
+            Passenger passenger1 = new Passenger(passenger, reservationNumber, hono1);
 
-
-
-            //calling passenger class
-            Passenger passenger1 = new Passenger(passenger, Passenger.checkBook(), hono1);
-
-            //calling flight class
+            // calling flight class
             Flight flight = new Flight("ABC123", "CMB: Sri Lanka", "changi: Singapore");
 
-            //calling reservation class
-            Reservation reserv1 = new Reservation(passenger, Passenger.checkBook());
-
-            if (answer.equals("yes") || answer.equals("YES")){
-                passenger1.checkBook();
-            }else {
-
-                Scanner input = new Scanner(System.in);
-                System.out.println("Can you enter your reservation number: ");
-                String inputReserveNumb = input.nextLine();
-                passenger1.nameOut(inputReserveNumb);
-            }
-
-
-
+            // calling reservation class
+            Reservation reserv1 = new Reservation(passenger, reservationNumber);
 
             flight.myDestination();
             flight.myDeparture();
-
-
 
             System.out.println("Your reservation number is: " + reserv1.getReservationNumber());
         }
