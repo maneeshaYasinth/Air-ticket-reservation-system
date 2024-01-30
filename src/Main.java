@@ -72,7 +72,49 @@ import java.util.Scanner;
 
 
 
+import java.util.Scanner;
+import java.util.Random;
 
+class Entrence {
+    void displayEntry() {
+        System.out.println("\t\t\t   ***             ***");
+        System.out.println("\t\t\t     ***         ***");
+        System.out.println("\t\t\t       ***     ***");
+        System.out.println("\t\t\t          ** ** ");
+        System.out.println("\t\t\t       ***     ***");
+        System.out.println("\t\t\t     ***         ***");
+        System.out.println("\t\t\t   ***             ***");
+
+        System.out.println();
+        System.out.println();
+
+        System.out.println("WELCOME! TO THE \"X\" AIR LINE");
+    }
+}
+
+class Inputs {
+    String answer;
+    String passenger;
+    String hono1;
+
+    void nameInput() {
+        Scanner nameScanner = new Scanner(System.in);
+        System.out.print("Enter your name: ");
+        passenger = nameScanner.nextLine();
+    }
+
+    void honoInput() {
+        Scanner honorificScanner = new Scanner(System.in);
+        System.out.print("What is your honorifics (Mr/Mrs/Ms):");
+        hono1 = honorificScanner.nextLine();
+    }
+
+    void bookingStatus() {
+        Scanner choice = new Scanner(System.in);
+        System.out.print("Have you booked your flight(yes or No): ");
+        answer = choice.nextLine();
+    }
+}
 
 class Flight {
     final String flightNumber;
@@ -117,7 +159,7 @@ class Passenger {
         }
     }
 
-    void nameOut(String reservationNumber) {
+    void nameOut() {
         switch (honorof) {
             case "Mr":
                 System.out.println("WELCOME! TO THE \"X\" AIR LINE Mr." + this.name);
@@ -156,52 +198,40 @@ class Reservation {
     public String getReservationNumber() {
         return reservationNumber;
     }
-
-
 }
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("\t\t\t   ***             ***");
-        System.out.println("\t\t\t     ***         ***");
-        System.out.println("\t\t\t       ***     ***");
-        System.out.println("\t\t\t          ** ** ");
-        System.out.println("\t\t\t       ***     ***");
-        System.out.println("\t\t\t     ***         ***");
-        System.out.println("\t\t\t   ***             ***");
 
-        System.out.println();
-        System.out.println();
+        Entrence et1 = new Entrence();
+        et1.displayEntry();
+        Inputs inputs = new Inputs();
+        //inputs.displayEntry();
 
-        System.out.println("WELCOME! TO THE \"X\" AIR LINE");
+        // Get user inputs
+        inputs.nameInput();
+        inputs.honoInput();
+        inputs.bookingStatus();
 
-        try (Scanner nameScanner = new Scanner(System.in);
-             Scanner honorificScanner = new Scanner(System.in);
-             Scanner choice = new Scanner(System.in)) {
+        // Now you can use the input values
+        String answer = inputs.answer;
+        String passenger = inputs.passenger;
+        String hono1 = inputs.hono1;
 
-            System.out.print("Enter your name: ");
-            String passenger = nameScanner.nextLine();
 
-            System.out.print("What is your honorifics (Mr/Mrs/Ms):");
-            String hono1 = honorificScanner.nextLine();
+        // calling passenger class
+        String reservationNumber = Passenger.checkBook(answer);
+        Passenger passenger1 = new Passenger(passenger, reservationNumber, hono1);
+        passenger1.nameOut();
+        // calling flight class
+        Flight flight = new Flight("ABC123", "CMB: Sri Lanka", "changi: Singapore");
 
-            System.out.print("Have you booked your flight(yes or No): ");
-            String answer = choice.nextLine();
+        // calling reservation class
+        Reservation reserv1 = new Reservation(passenger, reservationNumber);
 
-            // calling passenger class
-            String reservationNumber = Passenger.checkBook(answer);
-            Passenger passenger1 = new Passenger(passenger, reservationNumber, hono1);
+        flight.myDestination();
+        flight.myDeparture();
 
-            // calling flight class
-            Flight flight = new Flight("ABC123", "CMB: Sri Lanka", "changi: Singapore");
-
-            // calling reservation class
-            Reservation reserv1 = new Reservation(passenger, reservationNumber);
-
-            flight.myDestination();
-            flight.myDeparture();
-
-            System.out.println("Your reservation number is: " + reserv1.getReservationNumber());
-        }
+        System.out.println("Your reservation number is: " + reserv1.getReservationNumber());
     }
 }
