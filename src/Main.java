@@ -79,9 +79,14 @@ public class Main {
     public static void main(String[] args) {
 
         Entrence et1 = new Entrence();
+
+        //print entrance
         et1.displayEntry();
+
+
         Inputs inputs = new Inputs();
         //inputs.displayEntry();
+
 
         // Get user inputs
         inputs.nameInput();

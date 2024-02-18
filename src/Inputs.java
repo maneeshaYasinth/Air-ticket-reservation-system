@@ -22,4 +22,6 @@ class Inputs {
         System.out.print("Have you booked your flight(yes or No): ");
         answer = choice.nextLine();
     }
+
+
 }
